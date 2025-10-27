@@ -1,0 +1,149 @@
+// 🎨 Paleta moderna
+$primary: #0d6efd;
+$secondary: #6c757d;
+$light-bg: #f8f9fa;
+$shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+$text-dark: #212529;
+$text-muted: #6b7280;
+
+// ⚙️ Contenedor principal
+.container-fluid {
+  min-height: 100vh;
+  background-color: $light-bg;
+  animation: fadeIn 0.5s ease;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: $primary;
+  font-weight: 600;
+  i {
+    color: $secondary;
+  }
+}
+
+// 🧾 Tarjeta principal
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: $shadow;
+  background: #ffffff;
+  transition: all 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+// 💠 Contenedor de productos en formato grid
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+// 💳 Tarjeta individual de producto
+.product-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: $shadow;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.15);
+  }
+
+  .card-header {
+    background-color: rgba(13, 110, 253, 0.08);
+    padding: 0.75rem 1rem;
+
+    .product-name {
+      color: $text-dark;
+      font-size: 1.05rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      background: $primary;
+    }
+  }
+
+  .card-body {
+    padding: 1rem;
+    flex-grow: 1;
+
+    .product-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: $text-dark;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .card-footer {
+    background: transparent;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.75rem 1rem;
+
+    button {
+      border-radius: 8px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+// 🧾 Formulario
+app-producto-form {
+  display: block;
+  background: #fdfdfd;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: inset 0 0 0 1px rgba(13, 110, 253, 0.2);
+  }
+}
+
+// 🔢 Paginación
+app-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  button {
+    border-radius: 8px;
+    padding: 0.45rem 1rem;
+    color: $primary;
+    border: 1px solid $primary;
+    background: transparent;
+    transition: all 0.25s ease;
+    &:hover,
+    &.active {
+      background: $primary;
+      color: white;
+    }
+  }
+}
+
+// ✨ Animación suave
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

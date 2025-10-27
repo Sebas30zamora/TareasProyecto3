@@ -1,0 +1,67 @@
+<form [formGroup]="form" class="p-4 bg-white shadow-sm rounded-4 border border-light">
+    <div class="mb-4 text-center">
+        <h2 class="fw-bold text-primary mb-0">Administrar Productos</h2>
+        <p class="text-muted small">Complete los campos para agregar o editar un producto</p>
+    </div>
+
+    <div class="row gy-3">
+        <div class="col-md-6">
+            <label for="nombre" class="form-label fw-semibold">Nombre*</label>
+            <input id="nombre" formControlName="nombre" type="text" placeholder="Ej. Laptop OMEN" class="form-control"
+                [ngClass]="{
+          'is-invalid': form.controls['nombre'].invalid &&
+          (form.controls['nombre'].dirty || form.controls['nombre'].touched)
+        }" />
+            @if (form.controls['nombre'].invalid && (form.controls['nombre'].dirty || form.controls['nombre'].touched))
+            {
+            <p class="text-danger small mt-1">El nombre es obligatorio.</p>
+            }
+        </div>
+        <div class="col-md-3">
+            <label for="precio" class="form-label fw-semibold">Precio*</label>
+            <input id="precio" formControlName="precio" type="number" step="0.01" min="0" placeholder="₡0.00"
+                class="form-control" [ngClass]="{
+          'is-invalid': form.controls['precio'].invalid &&
+          (form.controls['precio'].dirty || form.controls['precio'].touched)
+        }" />
+            @if (form.controls['precio'].invalid && (form.controls['precio'].dirty || form.controls['precio'].touched))
+            {
+            <p class="text-danger small mt-1">El precio es obligatorio.</p>
+            }
+        </div>
+        <div class="col-md-3">
+            <label for="cantidad" class="form-label fw-semibold">Cantidad</label>
+            <input id="cantidad" formControlName="cantidad" type="number" min="0" placeholder="Ej. 10"
+                class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label for="categoriaId" class="form-label fw-semibold">Categoría*</label>
+            <select id="categoriaId" formControlName="categoriaId" class="form-select" [ngClass]="{
+          'is-invalid': form.controls['categoriaId'].invalid &&
+          (form.controls['categoriaId'].dirty || form.controls['categoriaId'].touched)
+        }">
+                <option value="">Seleccione una categoría</option>
+                @for (categoria of categorias; track categoria.id) {
+                <option [value]="categoria.id">{{ categoria.nombre }}</option>
+                }
+            </select>
+            @if (form.controls['categoriaId'].invalid && (form.controls['categoriaId'].dirty ||
+            form.controls['categoriaId'].touched)) {
+            <p class="text-danger small mt-1">Debe seleccionar una categoría.</p>
+            }
+        </div>
+        <div class="col-md-6">
+            <label for="descripcion" class="form-label fw-semibold">Descripción</label>
+            <textarea id="descripcion" formControlName="descripcion" rows="2"
+                placeholder="Escriba una breve descripción del producto" class="form-control"></textarea>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end mt-3">
+            <button (click)="callSaveMethod.emit(form.value)" [disabled]="form.invalid"
+                class="btn btn-primary px-5 py-2 rounded-pill fw-semibold" type="button">
+                Guardar Producto
+            </button>
+        </div>
+
+    </div>
+</form>

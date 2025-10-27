@@ -1,0 +1,21 @@
+@defer {
+  <div class="row p-4">
+    <div class="col-12 mb-3">
+      <h2 class="fw-bold text-primary">
+        <i class="fas fa-users me-2 text-secondary"></i> Usuarios registrados
+      </h2>
+    </div>
+
+    <div class="col-12">
+      <app-user-list [users]="userService.users$()"></app-user-list>
+
+      @if (userService.users$().length) {
+        <app-pagination [service]="userService"></app-pagination>
+      }
+    </div>
+  </div>
+} @loading (minimum 1.5s) {
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <app-loader></app-loader>
+  </div>
+}

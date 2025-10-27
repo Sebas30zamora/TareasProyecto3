@@ -1,0 +1,132 @@
+/* === Estilo general del formulario === */
+form {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease-in-out;
+  
+    &:hover {
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+  }
+  
+  /* === Encabezado === */
+  h2 {
+    font-weight: 700;
+    color: #0d6efd;
+  }
+  
+  p.text-muted {
+    font-size: 0.9rem;
+  }
+  
+  /* === Inputs === */
+  .form-control {
+    border-radius: 0.6rem;
+    border: 1px solid #dee2e6;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  
+    &:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+    }
+  
+    &.is-invalid {
+      border-color: #dc3545;
+      box-shadow: none;
+    }
+  }
+  
+  /* === Botón principal === */
+  button.btn {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease-in-out;
+  
+    &.btn-success {
+      background-color: #198754;
+      border: none;
+  
+      &:hover {
+        background-color: #157347;
+        transform: translateY(-1px);
+      }
+  
+      &:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+      }
+    }
+  
+    &.btn-outline-primary {
+      border-radius: 1.5rem;
+      padding: 0.25rem 1rem;
+  
+      &:hover {
+        background-color: #0d6efd;
+        color: #fff;
+      }
+    }
+  
+    &.btn-outline-danger {
+      border-radius: 1.5rem;
+      padding: 0.25rem 1rem;
+  
+      &:hover {
+        background-color: #dc3545;
+        color: #fff;
+      }
+    }
+  }
+  
+  /* === Tabla de categorías === */
+  .table {
+    font-size: 0.9rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: #f8f9fa;
+  
+    thead {
+      background-color: #f1f3f5;
+  
+      th {
+        font-weight: 600;
+        color: #495057;
+      }
+    }
+  
+    tbody tr {
+      transition: background-color 0.2s ease;
+  
+      &:hover {
+        background-color: #eef6ff;
+      }
+    }
+  }
+  
+  /* === Mensajes de error === */
+  .text-danger {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  /* === Ajustes responsivos === */
+  @media (max-width: 768px) {
+    form {
+      padding: 1.5rem;
+    }
+  
+    .table {
+      font-size: 0.8rem;
+    }
+  
+    button.btn {
+      width: 100%;
+    }
+  }
+  

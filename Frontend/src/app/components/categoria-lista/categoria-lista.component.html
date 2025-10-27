@@ -1,0 +1,30 @@
+<div class="row g-3 gift-list-container">
+  @for (item of categorias; track $index) {
+  <div class="col-12 col-md-4 col-lg-3">
+    <div class="card shadow-lg border-0 rounded-4 h-100">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <div>
+          <h5 class="card-title text-primary fw-bold mb-2 text-truncate">
+            <i class="fas fa-folder-open me-2 text-secondary"></i> {{ item.nombre }}
+          </h5>
+          <p class="card-text text-muted small mb-0 text-truncate">
+            {{ item.descripcion || 'Sin descripción' }}
+          </p>
+        </div>
+        @if (areActionsAvailable) {
+        <div class="d-flex justify-content-end gap-2 mt-3">
+          <button type="button" (click)="callEditMethod.emit(item)"
+            class="btn btn-outline-success btn-sm px-3 rounded-pill" title="Editar categoría">
+            <i class="fas fa-pen"></i>
+          </button>
+          <button type="button" (click)="callDeleteMethod.emit(item)"
+            class="btn btn-outline-danger btn-sm px-3 rounded-pill" title="Eliminar categoría">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
+</div>

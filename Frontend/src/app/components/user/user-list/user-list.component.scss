@@ -1,0 +1,29 @@
+.table-container {
+  border-radius: 1rem;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.table {
+  border-radius: 1rem;
+  overflow: hidden;
+  font-size: 0.95rem;
+
+  thead {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  tbody tr {
+    transition: background-color 0.25s ease;
+
+    &:hover {
+      background-color: #f1f4ff;
+    }
+  }
+
+  td,
+  th {
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,303 @@
+type: collection.insomnia.rest/5.0
+name: Practica 1 - Backend
+meta:
+  id: wrk_db19252607814e059b1aac35544e8a21
+  created: 1759730883177
+  modified: 1759730883177
+  description: ""
+collection:
+  - url: "{{ _.base_url }}auth/login"
+    name: "Auth "
+    meta:
+      id: req_c8fe482d5e3f4103a5eebfa296c38d56
+      created: 1759186431334
+      modified: 1759269200234
+      isPrivate: false
+      description: ""
+      sortKey: -1759186431334
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "super.admin.role@gmail.com", 
+        	"password": "superadmin123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}productos"
+    name: Post Producto
+    meta:
+      id: req_1d8bbeae521348079de873cf13925b60
+      created: 1759186621242
+      modified: 1759732541527
+      isPrivate: false
+      description: ""
+      sortKey: -1758742170846
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nombre": "Pantalones",
+          "descripcion": "Jeans de color negro",
+          "precio": 100.00,
+          "cantidad": 100,
+          "categoria": { "id": 3 }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}categorias"
+    name: Post Categoria
+    meta:
+      id: req_77a423259ebd42b99a233dcefe707b29
+      created: 1759187057526
+      modified: 1759732223899
+      isPrivate: false
+      description: ""
+      sortKey: -1758890257692
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nombre": "Ropa",
+          "descripcion": "Prendas para mujeres y hombres"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+      prefix: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}productos"
+    name: Get All Productos
+    meta:
+      id: req_0e26b83490734bf09fa6bb06ed06944a
+      created: 1759187962677
+      modified: 1759732139377
+      isPrivate: false
+      description: ""
+      sortKey: -1758742170796
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}categorias"
+    name: Get All Categorias
+    meta:
+      id: req_9d47026ccff2441c87219db7dcb768bf
+      created: 1759188051430
+      modified: 1759732042596
+      isPrivate: false
+      description: ""
+      sortKey: -1758890257642
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+      prefix: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}productos/2"
+    name: Put Producto
+    meta:
+      id: req_7527e75ee1354212b9290b1ee5be5d6e
+      created: 1759188104069
+      modified: 1759732827543
+      isPrivate: false
+      description: ""
+      sortKey: -1758742170746
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nombre": "Parlante",
+          "descripcion": "Parlante JBL (Actualizado)",
+          "precio": 200000,
+          "cantidad": 100,
+          "categoria": { "id": 2 }
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}categorias/3"
+    name: Put Categoria
+    meta:
+      id: req_bb42da5bee044e1883db434e0305083f
+      created: 1759188619638
+      modified: 1759732431249
+      isPrivate: false
+      description: ""
+      sortKey: -1758890257542
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nombre": "Ropa",
+          "descripcion": "Prendas de mujeres y hombres (Actualizado)"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+      prefix: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}categorias/1"
+    name: Del Categoria
+    meta:
+      id: req_ad298535b5114801872ed3f4d1c5df1c
+      created: 1759188721379
+      modified: 1759732076837
+      isPrivate: false
+      description: ""
+      sortKey: -1758742170946
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      disabled: false
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+      prefix: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}productos/1"
+    name: Del Producto
+    meta:
+      id: req_dc271ba50da146e0b93b4efc3fa5c048
+      created: 1759267010608
+      modified: 1759732844608
+      isPrivate: false
+      description: ""
+      sortKey: -1758631105949
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.6.1
+    authentication:
+      type: bearer
+      token: "{% response 'body', 'req_c8fe482d5e3f4103a5eebfa296c38d56',
+        'b64::JC50b2tlbg==::46b', 'never', 60 %}"
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_197e2ac84f254a33aaf7826513c4732b
+    created: 1759186418804
+    modified: 1759186418804
+environments:
+  name: Base Environment
+  meta:
+    id: env_c5f3c48c24ad4ac3940bb2db9e40b628
+    created: 1759186418799
+    modified: 1759187004097
+    isPrivate: false
+  data:
+    base_url: http://localhost:8080/

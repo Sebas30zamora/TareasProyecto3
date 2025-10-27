@@ -1,0 +1,51 @@
+<form [formGroup]="form" class="p-4 shadow-sm bg-white rounded-4 border border-light">
+  <div class="mb-4 text-center">
+    <h2 class="fw-bold text-primary mb-0">Administrar Categorías</h2>
+    <p class="text-muted small mt-1">Complete los campos para agregar o editar una categoría</p>
+  </div>
+
+  <div class="row gy-3">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nombre" class="form-label fw-semibold">Nombre*</label>
+        <input 
+          id="nombre"
+          formControlName="nombre"
+          type="text"
+          placeholder="Ej. Electrónica"
+          class="form-control form-control-sm rounded-3 shadow-sm"
+          [ngClass]="{ 'is-invalid': form.controls['nombre'].invalid && (form.controls['nombre'].dirty || form.controls['nombre'].touched) }"
+        />
+        @if (form.controls['nombre'].invalid && (form.controls['nombre'].dirty || form.controls['nombre'].touched)) {
+          <p class="text-danger small mt-1">El nombre es requerido</p>
+        }
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="descripcion" class="form-label fw-semibold">Descripción*</label>
+        <input
+          id="descripcion"
+          formControlName="descripcion"
+          type="text"
+          placeholder="Ej. Productos tecnológicos"
+          class="form-control form-control-sm rounded-3 shadow-sm"
+          [ngClass]="{ 'is-invalid': form.controls['descripcion'].invalid && (form.controls['descripcion'].dirty || form.controls['descripcion'].touched) }"
+        />
+        @if (form.controls['descripcion'].invalid && (form.controls['descripcion'].dirty || form.controls['descripcion'].touched)) {
+          <p class="text-danger small mt-1">⚠️ La descripción es requerida</p>
+        }
+      </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-end justify-content-center">
+      <button
+        (click)="callSaveMethod.emit(form.value)"
+        [disabled]="form.invalid"
+        class="btn btn-primary btn-sm px-5 py-2 shadow-sm rounded-pill fw-semibold transition"
+        type="button"
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>

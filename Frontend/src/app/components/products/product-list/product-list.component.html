@@ -1,0 +1,54 @@
+<div class="table-responsive shadow-sm rounded-4">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Categoría</th>
+                @if (areActionsAvailable) {
+                <th class="text-center">Acciones</th>
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (productos.length === 0) {
+            <tr>
+                <td colspan="7" class="text-center text-muted py-3">
+                    No hay productos registrados.
+                </td>
+            </tr>
+            }
+
+            @for (producto of productos; track producto.id) {
+            <tr>
+                <td class="fw-semibold text-secondary">{{ producto.id }}</td>
+                <td class="fw-bold text-dark">{{ producto.nombre }}</td>
+                <td class="text-muted small">{{ producto.descripcion || 'Sin descripción' }}</td>
+                <td class="text-success fw-semibold">
+                    {{ producto.precio ? '₡' + producto.precio.toFixed(2) : 'N/A' }}
+                </td>
+                <td>{{ producto.cantidad || 0 }}</td>
+                <td>{{ producto.categoria?.nombre || 'Sin categoría' }}</td>
+                @if (areActionsAvailable) {
+                <td class="text-center">
+
+                    <button (click)="callEditMethod.emit(producto)" class="btn btn-sm btn-outline-warning me-2"
+                        type="button" title="Editar producto">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button (click)="callDeleteMethod.emit(producto)" class="btn btn-sm btn-outline-danger"
+                        type="button" title="Eliminar producto">
+                        <i class="fas fa-trash"></i>
+                    </button>
+
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

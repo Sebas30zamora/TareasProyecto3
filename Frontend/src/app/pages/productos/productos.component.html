@@ -1,0 +1,74 @@
+<div class="container-fluid py-4 px-3">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary mb-0">
+      <i class="fas fa-boxes me-2 text-secondary"></i> Administrar Productos
+    </h2>
+  </div>
+
+  @if (areActionsAvailable) {
+    <div class="card shadow-sm border-0 rounded-4 mb-4">
+      <div class="card-body">
+        <app-producto-form
+          [form]="form"
+          [categorias]="categoriaService.categorias$()"
+          [showCategoriaSelector]="true"
+          (callSaveMethod)="save($event)"
+        ></app-producto-form>
+      </div>
+    </div>
+  }
+
+  <div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold text-primary mb-0">
+          <i class="fas fa-list me-2 text-secondary"></i> Listado de Productos
+        </h3>
+      </div>
+
+      <!-- Nuevo diseño tipo grid -->
+      <div class="product-grid">
+        @for (item of productoService.productos$(); track item.id) {
+          <div class="product-card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <span class="product-name fw-semibold">{{ item.nombre }}</span>
+              <span class="badge bg-primary">{{ item.categoria?.nombre || 'Sin categoría' }}</span>
+            </div>
+
+            <div class="card-body">
+              <p class="text-muted small mb-2">{{ item.descripcion || 'Sin descripción' }}</p>
+
+              <div class="product-info">
+                <div><strong>Precio:</strong> ₡{{ item.precio | number:'1.2-2' }}</div>
+                <div><strong>Cantidad:</strong> {{ item.cantidad }}</div>
+              </div>
+            </div>
+
+            <div class="card-footer d-flex justify-content-end gap-2">
+              @if (areActionsAvailable) {
+                <button
+                  class="btn btn-sm btn-outline-warning"
+                  (click)="edit(item)"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="delete(item)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (productoService.search.totalPages && productoService.search.totalPages > 1) {
+        <div class="d-flex justify-content-center mt-3">
+          <app-pagination [service]="productoService"></app-pagination>
+        </div>
+      }
+    </div>
+  </div>
+</div>

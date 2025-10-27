@@ -1,0 +1,71 @@
+@defer {
+  <div class="container-fluid py-4 px-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold text-primary mb-0">
+        <i class="fas fa-tags me-2 text-secondary"></i> Categorías
+      </h2>
+    </div>
+
+    @if (areActionsAvailable) {
+      <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card-body">
+          <app-categoria-form
+            [form]="form"
+            (callSaveMethod)="save($event)"
+          ></app-categoria-form>
+        </div>
+      </div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="fw-bold text-primary mb-0">
+        <i class="fas fa-layer-group me-2 text-secondary"></i> Listado de Categorías
+      </h3>
+    </div>
+
+    <!-- 🌈 NUEVO DISEÑO GRID -->
+    <div class="category-grid">
+      @for (categoria of categoriaService.categorias$(); track categoria.id) {
+        <div class="category-card shadow-sm">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-semibold text-dark">{{ categoria.nombre }}</h5>
+            <span class="badge bg-primary">ID {{ categoria.id }}</span>
+          </div>
+
+          <div class="card-body">
+            <p class="text-muted mb-2">
+              {{ categoria.descripcion || 'Sin descripción disponible.' }}
+            </p>
+          </div>
+
+          <div class="card-footer d-flex justify-content-end gap-2">
+            @if (areActionsAvailable) {
+              <button
+                class="btn btn-sm btn-outline-warning"
+                (click)="form.patchValue(categoria)"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="btn btn-sm btn-outline-danger"
+                (click)="delete(categoria)"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (categoriaService.categorias$().length) {
+      <div class="d-flex justify-content-center mt-4">
+        <app-pagination [service]="categoriaService" [customCall]="false" />
+      </div>
+    }
+  </div>
+} @loading (minimum 1.5s) {
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <app-loader />
+  </div>
+}
